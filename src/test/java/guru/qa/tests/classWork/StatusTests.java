@@ -1,6 +1,7 @@
 package guru.qa.tests.classWork;
 
 import org.junit.jupiter.api.Test;
+
 import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
@@ -33,9 +34,9 @@ public class StatusTests {
     void totalAmountTestWithAllLog() {
         given()
                 .log().all()
-        .when()
+                .when()
                 .get("https://selenoid.autotests.cloud/status") // https://selenoid.autotests.cloud/
-        .then()
+                .then()
                 .log().all()
                 .body("total", equalTo(5));
     }
@@ -46,9 +47,9 @@ public class StatusTests {
                 .log().uri()
                 .log().method()
                 .log().headers()
-        .when()
+                .when()
                 .get("https://selenoid.autotests.cloud/status") // https://selenoid.autotests.cloud/
-        .then()
+                .then()
                 .log().status()
                 .log().body()
                 .body("total", equalTo(5));
@@ -58,9 +59,9 @@ public class StatusTests {
     void checkStatusCode200() {
         given()
                 .log().uri()
-        .when()
+                .when()
                 .get("https://selenoid.autotests.cloud/status") // https://selenoid.autotests.cloud/
-        .then()
+                .then()
                 .log().status()
                 .statusCode(200);
     }
@@ -74,11 +75,11 @@ public class StatusTests {
                 .then()
                 .log().status()
                 .log().body()
-                .body("",hasKey("total"))
-                .body("",hasKey("used"))
-                .body("",hasKey("queued"))
-                .body("",hasKey("pending"))
-                .body("",hasKey("browsers"));
+                .body("", hasKey("total"))
+                .body("", hasKey("used"))
+                .body("", hasKey("queued"))
+                .body("", hasKey("pending"))
+                .body("", hasKey("browsers"));
     }
 
     @Test
@@ -90,18 +91,19 @@ public class StatusTests {
                 .then()
                 .log().status()
                 .log().body()
-                .body("browsers.chrome",hasKey("127.0"))
-                .body("browsers.chrome",hasKey("128.0"))
-                .body("browsers.firefox",hasKey("124.0"));
+                .body("browsers.chrome", hasKey("127.0"))
+                .body("browsers.chrome", hasKey("128.0"))
+                .body("browsers.firefox", hasKey("124.0"));
 
     }
+
     @Test
     void checkSchemaTest() {
         given()
                 .log().uri()
-        .when()
+                .when()
                 .get("https://selenoid.autotests.cloud/status") // https://selenoid.autotests.cloud/
-        .then()
+                .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
